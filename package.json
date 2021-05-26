@@ -1,0 +1,20 @@
+{
+  "name": "rpsls",
+  "version": "1.0.0",
+  "description": "rock, paper, scissor. lizard, Spock game using OOP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiaKuza/rpsls.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GiaKuza/rpsls/issues"
+  },
+  "homepage": "https://github.com/GiaKuza/rpsls#readme"
+}
