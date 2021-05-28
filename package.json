@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/GiaKuza/rpsls/issues"
   },
-  "homepage": "https://github.com/GiaKuza/rpsls#readme"
+  "homepage": "https://github.com/GiaKuza/rpsls#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }

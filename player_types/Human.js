@@ -1,27 +1,21 @@
 "use strict";
 
 const { Player } = require("../Player");
+var prompt = require('prompt-sync')();
 
 class Human extends Player{
-    constructor(name, gestureChoice){
+    constructor(name){
         super(name);
-        this.gestureChoice = gestureChoice; // gesture choice 0=rock 1=paper 2=scissors 3=lizard 4=spock
     }
-
-
-    setGestureSelection(){
-        for(let i = 0; i<Player.gestures; i++ ){
-            if ( i == parseInt(this.gestureChoice)){
-                this.Selection = Player.gestures[i];
-                break;
-            }
-        }
-    return this.Selection;
+    
+    //override parents method -> prompt user to select gesture 
+    selectGesture(){
+      
+        console.log("\nSelect a gesture:\n(0)Rock\n(1)Paper\n(2)Scissors\n(3)Lizard\n(4)Spock\n");
+        var choice = prompt("> ");
+        this.gestureChoice = this.gestures[choice];
 
     }
 
-    displaySelection(){
-        console.log("Player " + this.name + " has selected " + this.Selection + "!");
-    }
 }
 module.exports.Human = Human;
