@@ -9,10 +9,11 @@ class Human extends Player{
     }
     
     //override parents method -> prompt user to select gesture 
-    selectGesture(){
+    selectGesture(player){
       
-        console.log("\nSelect a gesture:\n(0)Rock\n(1)Paper\n(2)Scissors\n(3)Lizard\n(4)Spock\n");
+        console.log("\n" + this.name + ", select a gesture:\n(0)Rock\n(1)Paper\n(2)Scissors\n(3)Lizard\n(4)Spock");
         var choice = prompt("> ");
+        //console.log("\n");
         this.gestureChoice = this.gestures[choice];
 
     }

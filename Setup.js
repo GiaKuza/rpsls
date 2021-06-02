@@ -10,7 +10,6 @@ class Setup {
         this.player1;
     }
 
-
 run(){
     this.gameType();
 
@@ -20,7 +19,8 @@ gameType(){
     console.log("Select the type of game you want to play: \n(1) Single Player\n(2) Multi-Player");
     var gameType = prompt("> ");
 
-//add function to validate user input
+//ToDo: add function to validate user input 
+//ToDo: return to main menu until choose exit
 
     if(1 == parseInt(gameType)){
     
@@ -30,15 +30,15 @@ gameType(){
     }
     else if (2 == parseInt(gameType)){
         this.gameType = gameType;
-        //call multiplayer()
+        this.multiPlayer();
     }
 
 }
 
 singlePlayer(){
-    console.log("Single Player Mode Selected! .. Its going to be You vs the AI bot! ");
+    console.log("\nSingle Player Mode Selected! .. Its going to be You vs the AI bot! ");
     
-    console.log("Enter player name:");
+    console.log("\nEnter player name:");
     
     //set name for human and ai players
     var playerName = prompt("> ");
@@ -47,23 +47,20 @@ singlePlayer(){
     var bot1 = new AI(botName);
     
     
-    console.log("How many rounds do you want to play against the AI?");
+    console.log("\nHow many rounds do you want to play against the AI?");
     var rounds = prompt("> ");
-    console.log("Ok! lets play for " + rounds + " rounds!");
+    console.log("\nOk! lets play for " + rounds + " rounds!");
 
     for(let i=0; i<rounds; i++){
 
        player1.selectGesture();
        bot1.selectGesture();
 
-       console.log(player1.getName()  + " chose -----> " + player1.gestureChoice);
-       console.log(bot1.getName() + " chose -----> " + bot1.gestureChoice);
+       console.log("\n" + player1.getName()  + " chose -----> " + player1.gestureChoice);
+       console.log(bot1.getName() + " chose -----> " + bot1.gestureChoice + "\n");
        
        //logic to update scores of player and bot
        this.calculateScore(player1.gestureChoice, bot1.gestureChoice, player1, bot1);
-
-
-
        
     }
     this.declareWinner(player1, bot1);
@@ -72,9 +69,39 @@ singlePlayer(){
 }// end of singlePlayer()
 
 
+multiPlayer(){
+    console.log("\nMulti-Player Mode Selected! ! ");
+    
+    console.log("\nEnter a name for Player 1:");
+    var player1name = prompt("> ");
+    console.log("\nEnter a name for Player 2:");
+    var player2name = prompt("> ");
+
+    var player1 = new Human(player1name);
+    var player2 = new Human(player2name);
+
+    console.log("\nHow many rounds do you want to play against your opponent?");
+    var rounds = prompt("> ");
+    console.log("\nOk! lets play for " + rounds + " rounds!");
+
+    for(let i=0; i<rounds; i++){
+        player1.selectGesture();
+        player2.selectGesture();
+ 
+        console.log("\n" + player1.name  + " chose -----> " + player1.gestureChoice);
+        console.log(player2.name + " chose -----> " + player2.gestureChoice + "\n");
+        
+        //logic to update scores of players
+        this.calculateScore(player1.gestureChoice, player2.gestureChoice, player1, player2);
+ 
+     }
+     this.declareWinner(player1, player2);
+     
+}
+
 //logic to update scores of player and bot takes two arguments for gestures
 calculateScore(playerSelection, botSelection, player1, bot1){
-    console.log("\n");
+    //console.log("\n");
     
     if(playerSelection == botSelection){
         console.log("Tie!, no points awarded to either player");    
@@ -85,7 +112,7 @@ calculateScore(playerSelection, botSelection, player1, bot1){
             console.log(playerSelection + " beats " + botSelection + " !\n+1 for "+ player1.getName());
             player1.setScore(1);
         }
-        else if((botSelection == "spock") || (playerSelection == "paper")){
+        else if((botSelection == "spock") || (botSelection == "paper")){
             console.log(botSelection + " beats " + playerSelection + " !\n+1 for "+ bot1.getName());
             bot1.setScore(1);
         }
@@ -134,7 +161,7 @@ calculateScore(playerSelection, botSelection, player1, bot1){
             bot1.setScore(1);
         }
     }
-    console.log("\n");
+    //console.log("\n");
 }
 
 declareWinner(player1, bot1){
@@ -143,13 +170,13 @@ declareWinner(player1, bot1){
     console.log(bot1.name + " : " + bot1.score);
 
     if(player1.score > bot1.score){
-        console.log(player1.name + " WINS!! ");    
+        console.log("\n" + player1.name + " WINS!! \n");    
 
     }
     else if(bot1.score > player1.score ){
-        console.log(bot1.name + "WINS!! ")
+        console.log("\n" + bot1.name + " WINS!! \n");
     }
-    else(){
+    else{
         console.log("IT's a Draw!!");
     }
 }
